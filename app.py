@@ -17,9 +17,9 @@ if API_KEY is None:
     st.error("La clave de API de TMDb no está configurada correctamente.")
     raise ValueError("API Key no encontrada. Por favor, configura el archivo .env correctamente.")
 
-# ---------------------------
+
 # Función para obtener el poster desde TMDb
-# ---------------------------
+
 def obtener_poster(tmdb_id):
     """Obtener el poster de la película desde TMDb usando el tmdb_id"""
     url = f"https://api.themoviedb.org/3/movie/{tmdb_id}?api_key={API_KEY}"
@@ -34,10 +34,7 @@ def obtener_poster(tmdb_id):
             poster_url = f"https://image.tmdb.org/t/p/w500{poster_path}"
             return poster_url
     return None
-
-# ---------------------------
 # Función para calcular los 5 vecinos más cercanos
-# ---------------------------
 def obtener_vecinos_UMAP(df, image_id, n=5):
     """Calcular los 5 vecinos más cercanos en el espacio UMAP"""
     
@@ -62,9 +59,8 @@ def obtener_vecinos_UMAP(df, image_id, n=5):
 
     return closest_movies
 
-# ---------------------------
+
 # Mostrar el poster y recomendaciones por cluster
-# ---------------------------
 def mostrar_poster_y_recomendaciones(df, links_df, image_id, n=5):
     """Mostrar el poster de la imagen e ir a las recomendaciones del mismo cluster"""
     
@@ -113,9 +109,8 @@ def mostrar_poster_y_recomendaciones(df, links_df, image_id, n=5):
             st.write(f"Imagen no encontrada para {f}")
     st.markdown("---")
 
-# ---------------------------
 # Main
-# ---------------------------
+
 # Cargar los CSV generados con K-Means++ y links.csv
 csv_path = "./posters_pca_umap_clusters.csv"  # CSV con los clusters en el mismo nivel que app.py
 links_csv_path = "./links.csv"  # CSV de links en el mismo nivel que app.py
